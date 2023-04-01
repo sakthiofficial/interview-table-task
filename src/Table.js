@@ -1,6 +1,6 @@
 import { data } from './Mockdata';
 import { useEffect, useState } from 'react';
-import SwitchRightIcon from '@mui/icons-material/SwitchRight';
+// import SwitchRightIcon from '@mui/icons-material/SwitchRight';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -106,7 +106,7 @@ export function Table() {
                     <tr>
 
                         {thead.map(val => (
-                            <th scope="col">{val} <SwitchRightIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
+                            <th scope="col">{val} <SearchIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
 
                         ))}
 
