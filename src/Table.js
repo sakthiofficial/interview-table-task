@@ -8,13 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Button } from '@mui/material';
-import { globalFilter } from "./globalFilter";
+import { globalFilter } from "./Table1_assets/filters/filters/globalFilter";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { Filter } from './Filter';
-import { SearchBycol } from './SearchBycol';
-import { ColumnMenu } from './ColumnMenu';
+import { Filter } from './Table2_assets/filters/Filter';
+import { SearchBycol } from './assets/components/SearchBycol';
+import { ColumnMenu } from './assets/components/ColumnMenu';
 import { sort } from './sort';
 import SwitchRightIcon from '@mui/icons-material/SwitchRight';
+import { Pagination } from './Table1_assets/filters/components/Pagination';
 export function Table() {
     let thead = ["id", "first_name", "last_name", "email", "gender", "amount"]
     let [page, setpage] = useState(2);
@@ -160,28 +161,6 @@ export function Table() {
         </div>
     );
 }
-function Pagination({ length, page, setpage }) {
-
-    let nums = []
-    for (let i = 1; i < Math.floor(length / 10); i++) {
-        nums.push(i)
-    }
-
-    return (
-        <>
-            {nums.map(val => (
-                <>
-                    <span onClick={() => setpage(val)} className={page == val ? "app_table_pagination-selected" : 'app_table_pagination-num'}>{val}</span>
-
-
-
-                </>
-            ))}
-        </>
-    )
-}
-
-
 function genFilter(gender, data) {
     console.log(gender, data);
     let arr = [];
