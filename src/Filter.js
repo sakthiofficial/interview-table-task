@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
 
-export function Filter({ colu, setcolu, sorting }) {
+export function Filter({ colu, genderfilter, setcolu, sorting }) {
     let [sort, setsort] = useState(null)
     let [col, setcol] = useState(null)
     let [gender, setgender] = useState(null)
@@ -18,13 +18,22 @@ export function Filter({ colu, setcolu, sorting }) {
     let amountrow = ["<", "<=", ">", ">=", "=="];
     let genderrow = ["male", "female"]
     function filter(list) {
+
         list.map(val => {
+
             if (val.toLowerCase() == "sort") {
                 if (col && sort) {
                     console.log(col, sort);
                     setcol(col)
                     sorting(sort, col)
                 }
+
+            }
+            if (gender) {
+
+
+                genderfilter(gender)
+
             }
         })
     }
@@ -71,10 +80,12 @@ export function Filter({ colu, setcolu, sorting }) {
                 </div>
                 <div className="option">
                     <div className="drop_down">
-                        <p><span>Gender</span><KeyboardArrowLeftIcon onClick={() => setgender(gender == null ? "" : null)} className="option_icon" /></p>
+                        <p><span>{gender ? gender : "Gender"}</span><KeyboardArrowLeftIcon onClick={() => setgender(gender == null ? "" : null)} className="option_icon" /></p>
                         {gender == "" ? <div className="drop_down_menus">
                             {genderrow.map(val => (
-                                <p onClick={() => setgender(val)}>{val}</p>
+                                <p onClick={() => {
+                                    setgender(val)
+                                }}>{val}</p>
                             ))}
 
                         </div> : null}

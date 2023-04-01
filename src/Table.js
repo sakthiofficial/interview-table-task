@@ -1,6 +1,6 @@
 import { data } from './Mockdata';
 import { useEffect, useState } from 'react';
-import { SwitchRightIcon } from "@mui/icons-material";
+// import SwitchRightIcon from "@mui/icons-material/SwitchRightIcon";
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -57,7 +57,10 @@ export function Table() {
         settableInfo([...res])
     }
 
-
+    function gendrFilter(gender) {
+        let res = genFilter(gender, data);
+        settableInfo([...res])
+    }
     return (
         <div className='app-table'>
 
@@ -87,7 +90,7 @@ export function Table() {
                             <div className="app_table_searchbar-filter">
                                 <Button onClick={() => setfilter(!filter)}> Filter<FilterAltIcon className="filter-icons" /></Button>
                                 {
-                                    filter ? <Filter sorting={Sorting} setcolu={setcol} colu={col} /> : null
+                                    filter ? <Filter genderfilter={gendrFilter} sorting={Sorting} setcolu={setcol} colu={col} /> : null
                                 }
 
                             </div>
@@ -106,7 +109,7 @@ export function Table() {
                     <tr>
 
                         {thead.map(val => (
-                            <th scope="col">{val} <SwitchRightIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
+                            <th scope="col">{val} <SearchIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
 
                         ))}
 
@@ -152,12 +155,12 @@ export function Table() {
     );
 }
 function Pagination({ length, page, setpage }) {
-    console.log(length);
+
     let nums = []
     for (let i = 1; i < Math.floor(length / 10); i++) {
         nums.push(i)
     }
-    console.log(nums);
+
     return (
         <>
             {nums.map(val => (
@@ -172,3 +175,16 @@ function Pagination({ length, page, setpage }) {
     )
 }
 
+
+function genFilter(gender, data) {
+    console.log(gender, data);
+    let arr = [];
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].gender.toLowerCase() == gender) {
+            arr.push(data[i])
+        }
+    }
+    console.log(arr);
+    return arr
+}
