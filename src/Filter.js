@@ -43,7 +43,7 @@ export function Filter({ colu, setcolu, sorting }) {
             <div className="filter_options">
                 <div className="option">
                     <div className="drop_down">
-                        <p><span>{sort == "" ? "Sort" : sort == 1 ? "a-z" : "z-a"}</span><KeyboardArrowLeftIcon onClick={() => setsort(sort == null ? "" : null)} className="option_icon" /></p>
+                        <p><span>{sort == null ? "Sort" : sort == 1 ? "a-z" : "z-a"}</span><KeyboardArrowLeftIcon onClick={() => setsort(sort == null ? "" : null)} className="option_icon" /></p>
                         {sort == "" ? <div className="drop_down_menus">
                             {sortrow.map(val => (
                                 <p onClick={() => setsort(val == "a-z" ? 1 : -1)}>{val}</p>
