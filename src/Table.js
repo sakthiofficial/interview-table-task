@@ -13,9 +13,11 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Filter } from './Table2_assets/filters/Filter';
 import { SearchBycol } from './assets/components/SearchBycol';
 import { ColumnMenu } from './assets/components/ColumnMenu';
-import { sort } from './sort';
+import { sort } from './calc/sort';
 import SwitchRightIcon from '@mui/icons-material/SwitchRight';
 import { Pagination } from './Table1_assets/filters/components/Pagination';
+import { genFilter } from './calc/genFilter';
+import { amount } from './calc/amount';
 export function Table() {
     let thead = ["id", "first_name", "last_name", "email", "gender", "amount"]
     let [page, setpage] = useState(2);
@@ -161,37 +163,4 @@ export function Table() {
         </div>
     );
 }
-function genFilter(gender, data) {
-    console.log(gender, data);
-    let arr = [];
 
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].gender.toLowerCase() == gender) {
-            arr.push(data[i])
-        }
-    }
-    console.log(arr);
-    return arr
-}
-
-function amount(opt, amt, data) {
-    let arr = []
-    for (let i = 0; i < data.length; i++) {
-        if (opt == "less than") {
-            if (data[i].amount < amt) {
-                arr.push(data[i])
-            }
-        } else if (opt == "grater than") {
-            if (data[i].amount > amt) {
-                arr.push(data[i])
-            }
-        } else {
-
-            if (data[i].amount == amt) {
-                arr.push(data[i])
-            }
-
-        }
-    }
-    return arr
-}

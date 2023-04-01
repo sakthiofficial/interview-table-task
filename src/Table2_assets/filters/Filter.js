@@ -16,7 +16,7 @@ export function Filter({ amountfilter, setfilter, genderfilter, sorting }) {
 
     let column = ["id", "first_name", "last_name", "email", "gender", "amount"];
     let sortrow = ["a-z", "z-a"];
-    let amountrow = ["less than", "greter than", "equal to"];
+    let amountrow = ["less than", "greater than", "equal to"];
     let genderrow = ["male", "female"]
     function filter(list) {
 
