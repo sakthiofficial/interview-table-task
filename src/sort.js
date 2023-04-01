@@ -1,5 +1,4 @@
 export function sort(col, order, data) {
-    console.log(col, order, data);
     let arr = [...data];
 
     for (let i = 0; i < data.length; i++) {
@@ -9,12 +8,10 @@ export function sort(col, order, data) {
             if (order > 0) {
                 if (arr[small][col] > arr[j][col]) {
                     small = j;
-                    console.log(data[i]);
                 }
             } else {
 
                 if (arr[small][col] < arr[j][col]) {
-                    console.log(arr[j]);
 
                     small = j;
                 }
@@ -26,6 +23,5 @@ export function sort(col, order, data) {
     }
 
 
-    console.log(arr);
     return arr;
 }

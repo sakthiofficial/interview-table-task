@@ -5,17 +5,18 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
 
-export function Filter({ setfilter, genderfilter, sorting }) {
+export function Filter({ amountfilter, setfilter, genderfilter, sorting }) {
     let [sort, setsort] = useState(null)
     let [col, setcol] = useState(null)
     let [gender, setgender] = useState(null)
     let [amount, setamount] = useState(null)
     let [list, setlist] = useState([])
+    let [amt, setamt] = useState(null)
 
 
     let column = ["id", "first_name", "last_name", "email", "gender", "amount"];
     let sortrow = ["a-z", "z-a"];
-    let amountrow = ["<", "<=", ">", ">=", "=="];
+    let amountrow = ["less than", "greter than", "equal to"];
     let genderrow = ["male", "female"]
     function filter(list) {
 
@@ -33,6 +34,10 @@ export function Filter({ setfilter, genderfilter, sorting }) {
 
 
                 genderfilter(gender)
+
+            }
+            if (amt) {
+                amountfilter(amount, amt)
 
             }
 
@@ -113,7 +118,7 @@ export function Filter({ setfilter, genderfilter, sorting }) {
                         </div> : null}
 
                     </div>
-                    <input type="number" />
+                    <input type="number" onChange={(e) => setamt(parseInt(e.target.value))} />
                     <IconButton onClick={() => setlist([...list, "amount"])} aria-label="Example">
                         <AddIcon />
                     </IconButton>
