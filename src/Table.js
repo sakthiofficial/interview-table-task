@@ -14,6 +14,7 @@ import { Filter } from './Filter';
 import { SearchBycol } from './SearchBycol';
 import { ColumnMenu } from './ColumnMenu';
 import { sort } from './sort';
+import SwitchRightIcon from '@mui/icons-material/SwitchRight';
 export function Table() {
     let thead = ["id", "first_name", "last_name", "email", "gender", "amount"]
     let [page, setpage] = useState(2);
@@ -90,7 +91,7 @@ export function Table() {
                             <div className="app_table_searchbar-filter">
                                 <Button onClick={() => setfilter(!filter)}> Filter<FilterAltIcon className="filter-icons" /></Button>
                                 {
-                                    filter ? <Filter genderfilter={gendrFilter} sorting={Sorting} setcolu={setcol} colu={col} /> : null
+                                    filter ? <Filter setfilter={setfilter} genderfilter={gendrFilter} sorting={Sorting} setcolu={setcol} colu={col} /> : null
                                 }
 
                             </div>
@@ -109,7 +110,7 @@ export function Table() {
                     <tr>
 
                         {thead.map(val => (
-                            <th scope="col">{val} <SearchIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
+                            <th scope="col">{val} <SwitchRightIcon onClick={() => setcol(col ? "" : val)} className="filter-icon" />{col == val ? <ColumnMenu search={search} sorting={Sorting} setcol={setcol} col={col} setsearch={setsearch} /> : null} </th>
 
                         ))}
 

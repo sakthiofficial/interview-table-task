@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
 
-export function Filter({ colu, genderfilter, setcolu, sorting }) {
+export function Filter({ setfilter, genderfilter, sorting }) {
     let [sort, setsort] = useState(null)
     let [col, setcol] = useState(null)
     let [gender, setgender] = useState(null)
@@ -13,7 +13,7 @@ export function Filter({ colu, genderfilter, setcolu, sorting }) {
     let [list, setlist] = useState([])
 
 
-    let column = ["id", "first_name ", "last_name", "email", "gender", "amount"];
+    let column = ["id", "first_name", "last_name", "email", "gender", "amount"];
     let sortrow = ["a-z", "z-a"];
     let amountrow = ["<", "<=", ">", ">=", "=="];
     let genderrow = ["male", "female"]
@@ -35,7 +35,10 @@ export function Filter({ colu, genderfilter, setcolu, sorting }) {
                 genderfilter(gender)
 
             }
+
         })
+        setfilter(false)
+
     }
     return (
         <div className="filter">
@@ -119,7 +122,9 @@ export function Filter({ colu, genderfilter, setcolu, sorting }) {
 
             </div>
             <div className="filter_btn">
-                <Button onClick={() => filter(list)}>Done</Button>
+                <Button onClick={() => {
+                    filter(list)
+                }}>Done</Button>
             </div>
         </div>
     );

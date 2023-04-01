@@ -9,6 +9,7 @@ export function sort(col, order, data) {
             if (order > 0) {
                 if (arr[small][col] > arr[j][col]) {
                     small = j;
+                    console.log(data[i]);
                 }
             } else {
 
